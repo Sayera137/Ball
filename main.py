@@ -22,12 +22,11 @@ def generate_reply(user_input):
         ]
     }
     response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=data)
-    
-# নিচের দুইটা লাইন যোগ করো
+
     print("Status Code:", response.status_code)
     print("Response Text:", response.text)
-    
-    if response.status_code == 200:    
+
+    if response.status_code == 200:
         return response.json()["choices"][0]["message"]["content"]
     else:
         return "দুঃখিত, আমি এখন একটু ব্যস্ত আছি। পরে কথা বলো।"
@@ -47,9 +46,12 @@ def send_message(chat_id, text):
     payload = {"chat_id": chat_id, "text": text}
     requests.post(url, json=payload)
 
-# নতুন webhook সেট করার রুট
 @app.route("/setwebhook", methods=["GET"])
 def set_webhook():
     delete = requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/deleteWebhook").text
     set_hook = requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/setWebhook?url={WEBHOOK_URL}/{BOT_TOKEN}").text
     return f"Delete webhook: {delete}\nSet webhook: {set_hook}"
+
+# এই অংশটা খুবই জরুরি
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 5000)))
