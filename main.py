@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 BOT_TOKEN = "7226274181:AAEbzTRtg_GciVh_wd1042QFMiu9YR-FaJ0"
 OPENROUTER_API_KEY = "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"
-WEBHOOK_URL = "https://your-app-name.onrender.com"  # Render এ তোমার URL অনুযায়ী এটি বদলাও
+WEBHOOK_URL = "https://ball-lmyw.onrender.com"  # Render এ তোমার URL অনুযায়ী এটি বদলাও
 
 CHARACTER_NAME = "সায়েরা"
 
