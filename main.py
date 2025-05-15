@@ -42,7 +42,9 @@ def send_message(chat_id, text):
     payload = {"chat_id": chat_id, "text": text}
     requests.post(url, json=payload)
 
-@app.before_first_request
+# নতুন webhook সেট করার রুট
+@app.route("/setwebhook", methods=["GET"])
 def set_webhook():
-    requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/deleteWebhook")
-    requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/setWebhook?url={WEBHOOK_URL}/{BOT_TOKEN}")
+    delete = requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/deleteWebhook").text
+    set_hook = requests.get(f"https://api.telegram.org/bot{BOT_TOKEN}/setWebhook?url={WEBHOOK_URL}/{BOT_TOKEN}").text
+    return f"Delete webhook: {delete}\nSet webhook: {set_hook}"
