@@ -22,12 +22,12 @@ def generate_reply(user_input):
         ]
     }
     response = requests.post("https://openrouter.ai/api/v1/chat/completions", headers=headers, json=data)
-    if response.status_code == 200:
-        
-       # নিচের দুইটা লাইন যোগ করো
+    
+# নিচের দুইটা লাইন যোগ করো
     print("Status Code:", response.status_code)
-    print("Response Text:", response.text 
-        
+    print("Response Text:", response.text
+    
+    if response.status_code == 200:    
         return response.json()["choices"][0]["message"]["content"]
     else:
         return "দুঃখিত, আমি এখন একটু ব্যস্ত আছি। পরে কথা বলো।"
