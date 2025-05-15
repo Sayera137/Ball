@@ -25,7 +25,7 @@ def generate_reply(user_input):
     
 # নিচের দুইটা লাইন যোগ করো
     print("Status Code:", response.status_code)
-    print("Response Text:", response.text
+    print("Response Text:", response.text)
     
     if response.status_code == 200:    
         return response.json()["choices"][0]["message"]["content"]
